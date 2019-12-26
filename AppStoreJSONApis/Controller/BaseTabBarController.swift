@@ -16,7 +16,7 @@ class BaseTabBarController: UITabBarController {
         viewControllers = [
             createNavController(viewController: UIViewController(), title: "투데이", imageName: "today_icon"),
             createNavController(viewController: UIViewController(), title: "앱", imageName: "apps"),
-            createNavController(viewController: UIViewController(), title: "검색", imageName: "search")
+            createNavController(viewController: AppsSearchController(), title: "검색", imageName: "search")
         ]
     }
     

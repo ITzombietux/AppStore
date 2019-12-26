@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9332FA8523B4E7A8001BBDBC /* AppsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9332FA8423B4E7A8001BBDBC /* AppsSearchController.swift */; };
 		9370A17E23B439CC007C456D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9370A17D23B439CC007C456D /* AppDelegate.swift */; };
 		9370A18023B439CC007C456D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9370A17F23B439CC007C456D /* SceneDelegate.swift */; };
 		9370A18223B439CC007C456D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9370A18123B439CC007C456D /* ViewController.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9332FA8423B4E7A8001BBDBC /* AppsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsSearchController.swift; sourceTree = "<group>"; };
 		9370A17A23B439CC007C456D /* AppStoreJSONApis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStoreJSONApis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9370A17D23B439CC007C456D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9370A17F23B439CC007C456D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +62,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9332FA8323B4E780001BBDBC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9370A19F23B43A4D007C456D /* BaseTabBarController.swift */,
+				9332FA8423B4E7A8001BBDBC /* AppsSearchController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		9370A17123B439CC007C456D = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +92,7 @@
 		9370A17C23B439CC007C456D /* AppStoreJSONApis */ = {
 			isa = PBXGroup;
 			children = (
+				9332FA8323B4E780001BBDBC /* Controller */,
 				9370A17D23B439CC007C456D /* AppDelegate.swift */,
 				9370A17F23B439CC007C456D /* SceneDelegate.swift */,
 				9370A18123B439CC007C456D /* ViewController.swift */,
@@ -88,7 +100,6 @@
 				9370A18623B439CF007C456D /* Assets.xcassets */,
 				9370A18823B439CF007C456D /* LaunchScreen.storyboard */,
 				9370A18B23B439CF007C456D /* Info.plist */,
-				9370A19F23B43A4D007C456D /* BaseTabBarController.swift */,
 			);
 			path = AppStoreJSONApis;
 			sourceTree = "<group>";
@@ -206,6 +217,7 @@
 				9370A1A023B43A4D007C456D /* BaseTabBarController.swift in Sources */,
 				9370A18223B439CC007C456D /* ViewController.swift in Sources */,
 				9370A17E23B439CC007C456D /* AppDelegate.swift in Sources */,
+				9332FA8523B4E7A8001BBDBC /* AppsSearchController.swift in Sources */,
 				9370A18023B439CC007C456D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
