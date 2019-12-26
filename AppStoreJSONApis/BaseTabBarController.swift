@@ -13,6 +13,15 @@ class BaseTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let todayViewController = UIViewController()
+        todayViewController.view.backgroundColor = .white
+        todayViewController.navigationItem.title = "투데이"
+        
+        let todayNavController = UINavigationController(rootViewController: todayViewController)
+        todayNavController.tabBarItem.title = "투데이"
+        todayNavController.tabBarItem.image = #imageLiteral(resourceName: "today_icon")
+        todayNavController.navigationBar.prefersLargeTitles = true
+        
         let redViewController = UIViewController()
         redViewController.view.backgroundColor = .white
         redViewController.navigationItem.title = "앱"
@@ -32,6 +41,7 @@ class BaseTabBarController: UITabBarController {
         blueNavController.navigationBar.prefersLargeTitles = true
         
         viewControllers = [
+            todayNavController,
             redNavController,
             blueNavController
         ]
