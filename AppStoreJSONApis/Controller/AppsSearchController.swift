@@ -22,29 +22,21 @@ class AppsSearchController: UICollectionViewController, UICollectionViewDelegate
         fetchITunesApps()
     }
     
+    fileprivate var appResults = [Result]()
+    
     fileprivate func fetchITunesApps() {
-        let urlString = "https://itunes.apple.com/search?term=instagram&entity=software"
-        guard let url = URL(string: urlString) else { return }
-        
-        // fetch data from internet
-        URLSession.shared.dataTask(with: url) { (data, response, err) in
+        Service.shared.fetchApps { (results, err) in
+            
             if let err = err {
-                print("Failed to fetch apps:", err)
+                print("Feiled to fetch apps:", err)
                 return
             }
             
-            // success
-            guard let data = data else { return }
-            
-            do {
-                let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
-                
-                searchResult.results.forEach({print($0.trackName, $0.primaryGenreName)})
-            } catch let jsonErr {
-                print("Failed to decode json :", jsonErr)
+            self.appResults = results
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
             }
-            
-        }.resume() // fires off the rquest
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -52,12 +44,17 @@ class AppsSearchController: UICollectionViewController, UICollectionViewDelegate
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return appResults.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SearchResultCell
         cell.nameLabel.text = "앱 이름"
+        
+        let appResult = appResults[indexPath.item]
+        cell.nameLabel.text = appResult.trackName
+        cell.categoryLabel.text = appResult.primaryGenreName
+        cell.ratingLabel.text = "Rating: \(appResult.averageUserRating ?? 0)"
     
         return cell
     }
