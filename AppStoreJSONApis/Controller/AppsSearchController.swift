@@ -22,6 +22,8 @@ class AppsSearchController: UICollectionViewController, UICollectionViewDelegate
         fetchITunesApps()
     }
     
+    fileprivate var appResults = [Result]()
+    
     fileprivate func fetchITunesApps() {
         let urlString = "https://itunes.apple.com/search?term=instagram&entity=software"
         guard let url = URL(string: urlString) else { return }
@@ -39,7 +41,12 @@ class AppsSearchController: UICollectionViewController, UICollectionViewDelegate
             do {
                 let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
                 
-                searchResult.results.forEach({print($0.trackName, $0.primaryGenreName)})
+                self.appResults = searchResult.results
+                
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+                
             } catch let jsonErr {
                 print("Failed to decode json :", jsonErr)
             }
@@ -52,12 +59,17 @@ class AppsSearchController: UICollectionViewController, UICollectionViewDelegate
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return appResults.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SearchResultCell
         cell.nameLabel.text = "앱 이름"
+        
+        let appResult = appResults[indexPath.item]
+        cell.nameLabel.text = appResult.trackName
+        cell.categoryLabel.text = appResult.primaryGenreName
+        cell.ratingLabel.text = "Rating: \(appResult.averageUserRating ?? 0)"
     
         return cell
     }
