@@ -9,7 +9,7 @@
 import Foundation
 
 class Service {
-    //TODO:- 싱글톤 수정 해야함
+    //TODO:- 싱글톤 수정 해야함.
     static let shared = Service() // singleton
     
     func fetchApps(completion: @escaping ([Result], Error?) -> ()) {
